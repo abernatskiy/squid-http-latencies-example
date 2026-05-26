@@ -11,7 +11,8 @@ import {
 export const processor = new EvmBatchProcessor()
     .setGateway({
       url: 'https://v2.archive.subsquid.io/network/ethereum-mainnet',
-      apiKey: assertNotNull(process.env.SQD_GATEWAY_API_KEY, 'SQD Gateways now require API keys'),
+      // Should be defined for local runs and undefined in Cloud
+      apiKey: process.env.SQD_GATEWAY_API_KEY,
     })
     // Chain RPC endpoint is required for
     //  - indexing unfinalized blocks https://docs.subsquid.io/basics/unfinalized-blocks/
